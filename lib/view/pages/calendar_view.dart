@@ -52,14 +52,14 @@ class _CalendarViewState extends State<CalendarView> {
   getWeekDaysName() {
     for (int i = 1; i <= 7; i++) {
       DateTime date = DateTime(year, month, i + 2);
-      weekDays.add(DateFormat.E().format(date));
+      weekDays.add(DateFormat.E("uz_UZ").format(date),);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final watch = context.watch<CalendarProvider>();
-    final read = context.read<CalendarProvider>();
+    final state = context.watch<CalendarProvider>();
+    final event = context.read<CalendarProvider>();
     return Provider<CalendarProvider>(
       create: (_) => CalendarProvider(),
       child: Container(
@@ -78,16 +78,16 @@ class _CalendarViewState extends State<CalendarView> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      read
+                      event
                         ..seekMonth()
                         ..getMonthName();
                     },
                     icon: widget.seekIcon,
                   ),
-                  Text(watch.monthName, style: widget.monthStyle),
+                  Text(state.monthName, style: widget.monthStyle),
                   IconButton(
                     onPressed: () {
-                      read
+                      event
                         ..nextMonth()
                         ..getMonthName();
                     },
@@ -95,8 +95,8 @@ class _CalendarViewState extends State<CalendarView> {
                   ),
                   SizedBox(width: 20,),
                   Text(
-                    watch.selectedDate.year.toString(),
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    state.selectedDate.year.toString(),
+                    style: widget.monthStyle,
                   ),
                 ],
               ),
@@ -113,29 +113,29 @@ class _CalendarViewState extends State<CalendarView> {
               ),
         SizedBox(height: 10,),
               GridView.builder(
-                itemCount: watch.days.length,
+                itemCount: state.days.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 7,
                 ),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return watch.days[index].toString().isEmpty
+                  return state.days[index].toString().isEmpty
                       ? SizedBox.shrink()
                       : CalendarItem(
                         onTap: () {
                           widget.onChanged?.call(
-                            "${watch.selectDateDay}-${watch.selectDateMonth}",
+                            "${state.selectDateDay}-${state.selectDateMonth}",
                           );
-                          read.selectDay(watch.days[index], watch.monthName);
+                          event.selectDay(state.days[index], state.monthName);
                         },
-                        day: watch.days[index].toString(),
+                        day: state.days[index].toString(),
                         isSelectDate:
-                            watch.selectDateDay == watch.days[index] &&
-                            watch.selectDateMonth == watch.monthName,
+                            state.selectDateDay == state.days[index] &&
+                            state.selectDateMonth == state.monthName,
                         isThisDay:
-                            watch.days[index] == DateTime.now().day &&
-                            watch.selectedDate.month == DateTime.now().month &&
-                            watch.selectedDate.year == DateTime.now().year,
+                            state.days[index] == DateTime.now().day &&
+                            state.selectedDate.month == DateTime.now().month &&
+                            state.selectedDate.year == DateTime.now().year,
                       );
                 },
               ),

@@ -16,7 +16,7 @@ class CalendarProvider extends ChangeNotifier {
   getWeekDaysName() {
     for (int i = 1; i <= 7; i++) {
       DateTime date = DateTime(selectedDate.year, selectedDate.month, i + 2);
-      weekDays.add(DateFormat.E().format(date));
+      weekDays.add(DateFormat.E("uz_UZ").format(date));
     }
   }
 
