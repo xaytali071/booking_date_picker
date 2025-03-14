@@ -50,7 +50,7 @@ class CalendarItem extends StatelessWidget {
             day,
             style: TextStyle(
               fontWeight: FontWeight.w500,
-              color: (isThisDay ?? false) ? Colors.white : (isSelectDate ?? false) ? selectItemColor : Colors.black,
+              color: (isThisDay ?? false) ? Colors.white : (isSelectDate ?? false) ? Colors.white : Colors.black,
             ),
           ),
         ),
