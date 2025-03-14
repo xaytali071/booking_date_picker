@@ -13,12 +13,6 @@ class CalendarProvider extends ChangeNotifier {
   int? selectDateDay;
   String? selectDateMonth;
 
-  getWeekDaysName() {
-    for (int i = 1; i <= 7; i++) {
-      DateTime date = DateTime(selectedDate.year, selectedDate.month, i + 2);
-      weekDays.add(DateFormat.E().format(date));
-    }
-  }
 
   getMonthName() {
     monthName = DateFormat.MMMM().format(

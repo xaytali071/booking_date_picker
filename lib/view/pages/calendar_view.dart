@@ -2,7 +2,6 @@ import 'package:booking_date_picker/controller/calendar_provider.dart';
 import 'package:booking_date_picker/view/widgets/calendar_item.dart';
 import 'package:booking_date_picker/view/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -10,20 +9,22 @@ class CalendarView extends StatefulWidget {
   final VoidCallback onTap;
   final ValueChanged? onChanged;
   final CustomButtonStyle? buttonStyle;
-  final Color selectColor;
-  final TextStyle weekDayStyle;
+  final TextStyle? weekDayStyle;
   final Icon seekIcon;
   final Icon previousIcon;
   final double? height;
   final double width;
-  final TextStyle monthStyle;
+  final TextStyle? monthStyle;
   final String locale;
+  final Color? selectItemColor;
+  final Color itemColor;
+  final Color itemBorderColor;
+  final double itemRadius;
   const CalendarView({
     super.key,
     required this.onTap,
     this.onChanged,
     this.buttonStyle,
-    this.selectColor = Colors.green,
     this.weekDayStyle = const TextStyle(fontWeight: FontWeight.bold),
      this.seekIcon=const Icon(Icons.arrow_back_ios),
      this.previousIcon=const Icon(Icons.arrow_forward_ios_sharp),
@@ -31,6 +32,10 @@ class CalendarView extends StatefulWidget {
      this.width=400,
     this.monthStyle = const TextStyle(fontWeight: FontWeight.bold),
     this.locale="uz_UZ",
+    this.selectItemColor,
+    this.itemColor=Colors.white,
+    this.itemBorderColor=Colors.grey,
+    this.itemRadius=12,
   });
 
   @override
@@ -54,9 +59,8 @@ class _CalendarViewState extends State<CalendarView> {
 
   getWeekDaysName() {
     for (int i = 1; i <= 7; i++) {
-      initializeDateFormatting(widget.locale, null);
       DateTime date = DateTime(year, month, i + 2);
-      weekDays.add(DateFormat.E().format(date),);
+      weekDays.add(DateFormat.E(widget.locale).format(date),);
     }
   }
 
@@ -88,7 +92,7 @@ class _CalendarViewState extends State<CalendarView> {
                     },
                     icon: widget.seekIcon,
                   ),
-                  Text(state.monthName, style: widget.monthStyle),
+                  Text(state.monthName, style: widget.monthStyle ?? TextStyle(fontWeight: FontWeight.bold,)),
                   IconButton(
                     onPressed: () {
                       event
@@ -100,7 +104,7 @@ class _CalendarViewState extends State<CalendarView> {
                   SizedBox(width: 20,),
                   Text(
                     state.selectedDate.year.toString(),
-                    style: widget.monthStyle,
+                    style: widget.monthStyle ?? TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -111,7 +115,7 @@ class _CalendarViewState extends State<CalendarView> {
                   for (int i = 0; i < weekDays.length; i++)
                     Text(
                       weekDays[i],
-                      style: widget.weekDayStyle,
+                      style: widget.weekDayStyle ?? TextStyle(),
                     ),
                 ],
               ),
@@ -126,6 +130,10 @@ class _CalendarViewState extends State<CalendarView> {
                   return state.days[index].toString().isEmpty
                       ? SizedBox.shrink()
                       : CalendarItem(
+                    itemColor: widget.itemColor,
+                        itemBorderColor: widget.itemBorderColor,
+                        selectItemColor: widget.selectItemColor,
+                        borderRadius: widget.itemRadius,
                         onTap: () {
                           widget.onChanged?.call(
                             "${state.selectDateDay}-${state.selectDateMonth}",

@@ -5,7 +5,7 @@ class CalendarItem extends StatelessWidget {
   final bool? isThisDay;
   final VoidCallback? onTap;
   final bool? isSelectDate;
-  final Color selectItemColor;
+  final Color? selectItemColor;
   final Color thisDayItemColor;
   final Color itemColor;
   final Color itemBorderColor;
