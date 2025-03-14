@@ -52,6 +52,7 @@ class _BookingDatePickerState extends State<BookingDatePicker> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<CalendarProvider>().buildCalendar(year, month);
+      context.read<CalendarProvider>().getMonthName(widget.locale);
       getWeekDaysName();
     });
     super.initState();
