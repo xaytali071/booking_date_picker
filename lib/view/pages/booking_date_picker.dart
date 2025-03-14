@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class CalendarView extends StatefulWidget {
+class BookingDatePicker extends StatefulWidget {
   final VoidCallback onTap;
   final ValueChanged? onChanged;
   final CustomButtonStyle? buttonStyle;
@@ -21,7 +21,7 @@ class CalendarView extends StatefulWidget {
   final Color itemBorderColor;
   final double itemRadius;
   final double borderRadius;
-  const CalendarView({
+  const BookingDatePicker({
     super.key,
     required this.onTap,
     this.onChanged,
@@ -41,10 +41,10 @@ class CalendarView extends StatefulWidget {
   });
 
   @override
-  State<CalendarView> createState() => _CalendarViewState();
+  State<BookingDatePicker> createState() => _BookingDatePickerState();
 }
 
-class _CalendarViewState extends State<CalendarView> {
+class _BookingDatePickerState extends State<BookingDatePicker> {
   int year = DateTime.now().year;
   int month = DateTime.now().month;
 
