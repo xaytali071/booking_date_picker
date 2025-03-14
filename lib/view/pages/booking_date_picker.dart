@@ -32,7 +32,7 @@ class BookingDatePicker extends StatefulWidget {
      this.height,
      this.width=400,
     this.monthStyle = const TextStyle(fontWeight: FontWeight.bold),
-    this.locale="uz_UZ",
+    this.locale="en_EN",
     this.selectItemColor=Colors.green,
     this.itemColor=Colors.white,
     this.itemBorderColor=Colors.grey,
