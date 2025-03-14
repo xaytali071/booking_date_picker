@@ -16,10 +16,11 @@ class CalendarView extends StatefulWidget {
   final double width;
   final TextStyle? monthStyle;
   final String locale;
-  final Color? selectItemColor;
+  final Color selectItemColor;
   final Color itemColor;
   final Color itemBorderColor;
   final double itemRadius;
+  final double borderRadius;
   const CalendarView({
     super.key,
     required this.onTap,
@@ -32,10 +33,11 @@ class CalendarView extends StatefulWidget {
      this.width=400,
     this.monthStyle = const TextStyle(fontWeight: FontWeight.bold),
     this.locale="uz_UZ",
-    this.selectItemColor,
+    this.selectItemColor=Colors.green,
     this.itemColor=Colors.white,
     this.itemBorderColor=Colors.grey,
     this.itemRadius=12,
+    this.borderRadius=12,
   });
 
   @override
@@ -74,7 +76,7 @@ class _CalendarViewState extends State<CalendarView> {
         width: widget.width,
         height: widget.height,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
           color: Colors.white,
         ),
         child: Padding(
