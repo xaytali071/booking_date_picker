@@ -2,6 +2,7 @@ import 'package:booking_date_picker/controller/calendar_provider.dart';
 import 'package:booking_date_picker/view/widgets/calendar_item.dart';
 import 'package:booking_date_picker/view/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,7 @@ class CalendarView extends StatefulWidget {
   final double? height;
   final double width;
   final TextStyle monthStyle;
+  final String locale;
   const CalendarView({
     super.key,
     required this.onTap,
@@ -28,6 +30,7 @@ class CalendarView extends StatefulWidget {
      this.height,
      this.width=400,
     this.monthStyle = const TextStyle(fontWeight: FontWeight.bold),
+    this.locale="uz_UZ",
   });
 
   @override
@@ -51,8 +54,9 @@ class _CalendarViewState extends State<CalendarView> {
 
   getWeekDaysName() {
     for (int i = 1; i <= 7; i++) {
+      initializeDateFormatting(widget.locale, null);
       DateTime date = DateTime(year, month, i + 2);
-      weekDays.add(DateFormat.E("uz_UZ").format(date),);
+      weekDays.add(DateFormat.E().format(date),);
     }
   }
 
