@@ -14,8 +14,8 @@ class CalendarProvider extends ChangeNotifier {
   String? selectDateMonth;
 
 
-  getMonthName() {
-    monthName = DateFormat.MMMM().format(
+  getMonthName(String locale) {
+    monthName = DateFormat.MMMM(locale).format(
       DateTime(selectedDate.year, selectedDate.month),
     );
     notifyListeners();

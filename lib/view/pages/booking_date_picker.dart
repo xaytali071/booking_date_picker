@@ -90,7 +90,7 @@ class _BookingDatePickerState extends State<BookingDatePicker> {
                     onPressed: () {
                       event
                         ..seekMonth()
-                        ..getMonthName();
+                        ..getMonthName(widget.locale);
                     },
                     icon: widget.seekIcon,
                   ),
@@ -99,7 +99,7 @@ class _BookingDatePickerState extends State<BookingDatePicker> {
                     onPressed: () {
                       event
                         ..nextMonth()
-                        ..getMonthName();
+                        ..getMonthName(widget.locale);
                     },
                     icon: widget.previousIcon,
                   ),
