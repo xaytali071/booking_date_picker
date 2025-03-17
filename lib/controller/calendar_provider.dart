@@ -4,8 +4,6 @@ import 'package:intl/intl.dart';
 class CalendarProvider extends ChangeNotifier {
   static int year = DateTime.now().year;
   static int month = DateTime.now().month;
-  List<String> weekDays = [];
-  String thisDay = DateFormat('yyyy-MM-dd').format(DateTime.now());
   DateTime selectedDate = DateTime.now();
   String monthName = DateFormat.MMMM().format(DateTime(year, month));
   List days = [];
