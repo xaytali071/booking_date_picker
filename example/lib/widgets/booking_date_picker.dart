@@ -49,7 +49,6 @@ class _BookingDatePickerState extends State<BookingDatePicker> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      initializeDateFormatting('en_EN', null);
       buildCalendar(DateTime.now().year, DateTime.now().month);
       getMonthName(widget.locale);
       getWeekDaysName();
@@ -108,7 +107,7 @@ class _BookingDatePickerState extends State<BookingDatePicker> {
                 ),
                 SizedBox(width: 20),
                 Text(
-                  selectedDate.year.toString(),
+                    NumberFormat.decimalPattern(widget.locale).format(selectedDate.year),
                   style:
                       widget.monthStyle ??
                       TextStyle(fontWeight: FontWeight.bold),
@@ -141,7 +140,7 @@ class _BookingDatePickerState extends State<BookingDatePicker> {
                       onTap: () {
                         selectDay(days[index], monthNumber, selectedDate.year);
                       },
-                      day: days[index].toString(),
+                      day: NumberFormat.decimalPattern(widget.locale).format(days[index]),
                       isSelectDate:
                           selectDateDay == days[index] &&
                           selectDateMonth == monthNumber &&

@@ -1,7 +1,7 @@
 name: booking_date_picker
-description: "A new Flutter project."
-version: 0.0.1
-homepage:
+description: "A Flutter widget for selecting dates with a customizable UI and multi-language support."
+version: 0.0.2
+repository: https://github.com/xaytali071/booking_date_picker
 
 environment:
   sdk: ^3.4.0
@@ -11,7 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  provider: ^6.1.2
   intl: ^0.20.2
 
 dev_dependencies:
