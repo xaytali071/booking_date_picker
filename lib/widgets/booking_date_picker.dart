@@ -49,6 +49,7 @@ class _BookingDatePickerState extends State<BookingDatePicker> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      initializeDateFormatting('en_EN', null);
       buildCalendar(DateTime.now().year, DateTime.now().month);
       getMonthName(widget.locale);
       getWeekDaysName();
