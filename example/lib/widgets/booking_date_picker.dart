@@ -229,7 +229,7 @@ class _BookingDatePickerState extends State<BookingDatePicker> {
   }
 
  String numberFormat(String num){
-    return num.replaceAll(".", "").replaceAll("'", "").replaceAll(" ", "").replaceAll("٬", "");
+    return num.replaceAll(".", "").replaceAll("'", "").replaceAll(" ", "").replaceAll("٬", "").replaceAll(",", "");
   }
 }
 
