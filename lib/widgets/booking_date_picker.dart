@@ -108,7 +108,7 @@ class _BookingDatePickerState extends State<BookingDatePicker> {
                 ),
                 SizedBox(width: 20),
                 Text(
-                  NumberFormat.decimalPattern(widget.locale).format(selectedDate.year),
+                 numberFormat(NumberFormat.decimalPattern(widget.locale).format(selectedDate.year)),
                   style:
                       widget.monthStyle ??
                       TextStyle(fontWeight: FontWeight.bold),
@@ -227,5 +227,9 @@ class _BookingDatePickerState extends State<BookingDatePicker> {
       selectDateYear = dateYear;
     }
     setState(() {});
+  }
+
+  String numberFormat(String num){
+    return num.replaceAll(".", "").replaceAll("'", "").replaceAll(" ", "").replaceAll("٬", "");
   }
 }

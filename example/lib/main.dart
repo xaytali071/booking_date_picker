@@ -53,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Dialog(
                   child: BookingDatePicker(
                     locale: "ar_EG",
+
                       onChanged: (s){
                         print(s);
                   }),
